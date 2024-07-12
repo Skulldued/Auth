@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import { signInFailure,signInStart,signInSuccess } from "../redux/user/userSlice";
 import {useDispatch, useSelector} from "react-redux";
+import Oauth from "../component/Oauth";
 const Signin = () => {
   const [formData, setFormData] = useState({});
  const {loading,error} = useSelector((state)=> state.user);
@@ -69,9 +70,7 @@ const Signin = () => {
           </button>
         </form>
         <div>
-          <button className="bg-red-700 p-2 w-full hover:opacity-95  duration-300 rounded-md my-2 text-white">
-            Continue With Google
-          </button>
+         <Oauth/>
           <p className="my-3 font-bold">
            Dont have a account{" "}
             <Link to="/sign-up" className="text-sky-500">
