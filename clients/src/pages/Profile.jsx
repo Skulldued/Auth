@@ -50,7 +50,7 @@ handleFileUpload(image);
 
 
         <input type="file" ref={fileRef} hidden accept='image/*' onChange={(e)=> setImage(e.target.files[0])} />
-        <img src={currentUser.profilePicture} onClick={()=> fileRef.current.click()}  alt="@dued" className='h-32 w-32 border border-dashed rounded-full self-center cursor-pointer object-cover' />
+        <img  src={formData.profilePicture || currentUser.profilePicture} onClick={()=> fileRef.current.click()}  alt="@dued" className='h-32 w-32 border border-dashed rounded-full self-center cursor-pointer object-cover' />
   <p className='text-sm self-center'>
     {
       imageError?(<span className='text-red-600'>Error Uploading image (file size must be 2 MB)</span>): imagePercent > 0 && imagePercent < 100 ? (
