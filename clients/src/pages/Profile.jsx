@@ -14,6 +14,7 @@ import {
   updateUserFailure,
   updateUserStart,
   updateUserSuccess,
+  signOut
 } from "../redux/user/userSlice";
 
 import { app } from "../firebase";
@@ -87,6 +88,13 @@ const Profile = () => {
   };
 
   // console.log(formData);
+
+
+
+
+
+
+  //Delete account
   const handleDeleteAccount = async()=>{
     try {
       dispatch(deleteUserStart());
@@ -104,6 +112,22 @@ const Profile = () => {
       dispatch(deleteUserFailure(data));
     }
   }
+
+
+
+
+
+  //signout account
+  const handleSignOut = async()=>{
+      try {
+        await fetch('/api/auth/signout');
+        dispatch(signOut());
+      } catch (error) {
+        console.log(error);
+      }
+  }
+
+
   return (
     <div className="bg-black h-screen ">
       <div className="text-white p-3 max-w-lg mx-auto">
@@ -169,7 +193,7 @@ const Profile = () => {
           <span onClick={handleDeleteAccount} className="text-red-700 text-xl cursor-pointer">
             Delete Account
           </span>
-          <span className=" text-xl cursor-pointer">Sign Up</span>
+          <span onClick={handleSignOut} className=" text-xl cursor-pointer">Sign Out</span>
         </div>
         <p className="text-red-600">{error && 'something Went Wrong!!'}</p>
         <p className="text-green-600">{error && 'User is updated successfully!'}</p>
