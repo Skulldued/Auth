@@ -1,5 +1,5 @@
 import { errorHandler } from "../utils/Error.js";
-import bcryptjs from "bcrypt";  
+import bcryptjs from "bcryptjs";  
 import User from "../models/user.model.js";
 export const test = (req,res)=>{
     res.send("Routes sunny by controllers");
@@ -18,7 +18,11 @@ export  const  updateUser = async(req,res,next)=>{
     const updateUser = await User.findByIdAndUpdate(
         req.params.id,
         {
-            $set:{
+            $set:{      
+
+
+
+              
                 username:req.body.username,
                 email:req.body.email,
                 password:req.body.password,
@@ -30,7 +34,21 @@ export  const  updateUser = async(req,res,next)=>{
   const {password,...rest} = updateUser._doc;
   res.status(200).json(rest);
   } catch (error) {
-    
+    next(error) ;
   }
+}
+
+
+// //delete User
+export const deleteUser = async(req,res,next)=>{
+          if(req.user.id !== req.params.id){
+            return next(errorHandler(401,"You can delete only your account !!"));
+          }
+          try {
+            await User.findByIdAndDelete(req.params.id);
+            res.status(200).json("user has been deleted...");
+          } catch (error) {
+            next(error);
+          }
 }
 

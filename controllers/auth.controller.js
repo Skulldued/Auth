@@ -1,5 +1,5 @@
 import User from "../models/user.model.js";
-import bcryptjs from "bcrypt";
+import bcryptjs from "bcryptjs";
 import { errorHandler } from "../utils/Error.js";
 import jwt from "jsonwebtoken";
 export const signup = async (req, res, next) => {
@@ -17,6 +17,12 @@ export const signup = async (req, res, next) => {
     // next(errorHandler(300,"Someting Went Wrong"));
   }
 };
+
+
+
+
+
+//signIn
 
 export const signin = async (req, res, next) => {
   const { email, password } = req.body;
@@ -40,6 +46,14 @@ export const signin = async (req, res, next) => {
     next(error);
   }
 };
+
+
+
+
+
+
+
+//Google login
 
 export const google = async(req,res,next)=>{
   try {
